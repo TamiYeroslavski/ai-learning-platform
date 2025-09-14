@@ -19,14 +19,20 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-  <input type="text" placeholder="Name" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} required />
-  <input type="text" placeholder="Phone" value={phone} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)} required />
-        <button type="submit">Register</button>
-      </form>
-      {error && <p style={{color:'red'}}>{error}</p>}
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+      <div className="card p-4 shadow" style={{ maxWidth: 400, width: "100%" }}>
+        <h2 className="mb-3 text-center">הרשמה</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input type="text" className="form-control" placeholder="שם" value={name} onChange={e => setName(e.target.value)} required />
+          </div>
+          <div className="mb-3">
+            <input type="text" className="form-control" placeholder="טלפון" value={phone} onChange={e => setPhone(e.target.value)} required />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">הרשם</button>
+        </form>
+        {error && <p className="text-danger mt-3 text-center">{error}</p>}
+      </div>
     </div>
   );
 }

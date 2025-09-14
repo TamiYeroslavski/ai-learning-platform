@@ -70,31 +70,42 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: 'auto', fontFamily: 'Arial' }}>
-      <h2>מערכת למידה מבוססת GPT</h2>
-      <p style={{ background: '#f0f0f0', padding: '8px', borderRadius: '6px' }}>
-        בחר תחום לימוד (למשל חשבון או אנגלית), בחר תת-נושא, כתוב שאלה או נושא שתרצה ללמוד, ולחץ שלח. המערכת תביא תשובה לימודית מ-GPT.
-      </p>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '1em', display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <select value={categoryId} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCategoryId(e.target.value)} required>
-          <option value="">בחר תחום לימוד</option>
-          {categories.map((c: any) => <option key={c._id} value={c._id}>{c.name}</option>)}
-        </select>
-        <select value={subCategoryId} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSubCategoryId(e.target.value)} required>
-          <option value="">בחר תת-נושא</option>
-          {subCategories.map((sc: any) => <option key={sc._id} value={sc._id}>{sc.name}</option>)}
-        </select>
-        <input type="text" placeholder="מה תרצה ללמוד?" value={prompt} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrompt(e.target.value)} required style={{ flex: 1 }} />
-        <button type="submit">שלח</button>
-      </form>
-      {response && <div style={{ background: '#e6ffe6', padding: '8px', borderRadius: '6px', marginBottom: '1em' }}><h3>תשובת GPT:</h3><p>{response}</p></div>}
-      <h3>היסטוריית שאלות</h3>
-      <ul>
-        {history.map((h: any, i: number) => (
-          <li key={i}>{h.prompt} - <span style={{ color: '#007700' }}>{h.response}</span></li>
-        ))}
-      </ul>
-      {/* אופציה להוספת תחום ותת-תחום זמינה רק למנהל */}
+    <div className="container py-5">
+      <div className="card shadow mx-auto" style={{ maxWidth: 650 }}>
+        <div className="card-body">
+          <h2 className="mb-3 text-center">מערכת למידה מבוססת GPT</h2>
+          <p className="alert alert-info text-center">
+            בחר תחום לימוד (למשל חשבון או אנגלית), בחר תת-נושא, כתוב שאלה או נושא שתרצה ללמוד, ולחץ שלח. המערכת תביא תשובה לימודית מ-GPT.
+          </p>
+          <form onSubmit={handleSubmit} className="row g-2 align-items-center mb-4">
+            <div className="col-md-4">
+              <select className="form-select" value={categoryId} onChange={e => setCategoryId(e.target.value)} required>
+                <option value="">בחר תחום לימוד</option>
+                {categories.map((c: any) => <option key={c._id} value={c._id}>{c.name}</option>)}
+              </select>
+            </div>
+            <div className="col-md-4">
+              <select className="form-select" value={subCategoryId} onChange={e => setSubCategoryId(e.target.value)} required>
+                <option value="">בחר תת-נושא</option>
+                {subCategories.map((sc: any) => <option key={sc._id} value={sc._id}>{sc.name}</option>)}
+              </select>
+            </div>
+            <div className="col-md-4 d-flex">
+              <input type="text" className="form-control me-2" placeholder="מה תרצה ללמוד?" value={prompt} onChange={e => setPrompt(e.target.value)} required />
+              <button type="submit" className="btn btn-success">שלח</button>
+            </div>
+          </form>
+          {response && <div className="alert alert-success"><h5>תשובת GPT:</h5><p>{response}</p></div>}
+          <h4 className="mt-4">היסטוריית שאלות</h4>
+          <ul className="list-group mb-3">
+            {history.map((h: any, i: number) => (
+              <li key={i} className="list-group-item">
+                <strong>{h.prompt}</strong> <span className="text-success">- {h.response}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

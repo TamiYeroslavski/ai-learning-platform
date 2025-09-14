@@ -41,56 +41,67 @@ const Admin = () => {
   };
 
   return (
-    <React.Fragment>
-      <div>
-        <h2>דשבורד מנהל</h2>
-        <div style={{ marginBottom: 30 }}>
-          <h3>הוספת תחום חדש</h3>
-          <form onSubmit={handleAddCategory}>
-            <input
-              type="text"
-              placeholder="שם תחום"
-              value={categoryName}
-              onChange={e => setCategoryName(e.target.value)}
-            />
-            <button type="submit" style={{ marginLeft: "10px" }}>הוסף תחום</button>
-          </form>
+    <div className="container py-5">
+      <div className="card shadow mx-auto" style={{ maxWidth: 700 }}>
+        <div className="card-body">
+          <h2 className="mb-4 text-center">דשבורד מנהל</h2>
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <h4>הוספת תחום חדש</h4>
+              <form onSubmit={handleAddCategory} className="d-flex gap-2 mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="שם תחום"
+                  value={categoryName}
+                  onChange={e => setCategoryName(e.target.value)}
+                  required
+                />
+                <button type="submit" className="btn btn-primary">הוסף תחום</button>
+              </form>
+            </div>
+            <div className="col-md-6">
+              <h4>הוספת תת-תחום חדש</h4>
+              <form onSubmit={handleAddSubCategory} className="d-flex gap-2 mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="שם תת-תחום"
+                  value={subCategoryName}
+                  onChange={e => setSubCategoryName(e.target.value)}
+                  required
+                />
+                <select
+                  className="form-select"
+                  value={selectedCategory}
+                  onChange={e => setSelectedCategory(e.target.value)}
+                  required
+                >
+                  <option value="">בחר תחום</option>
+                  {categories.map((cat: any) => (
+                    <option key={cat._id} value={cat._id}>{cat.name}</option>
+                  ))}
+                </select>
+                <button type="submit" className="btn btn-secondary">הוסף תת-תחום</button>
+              </form>
+            </div>
+          </div>
+          {message && <div className="alert alert-success text-center">{message}</div>}
+          <h4 className="mt-4">היסטוריית משתמשים</h4>
+          <ul className="list-group mb-3">
+            {users.map((u: any) => <li key={u._id} className="list-group-item">{u.name} ({u.phone})</li>)}
+          </ul>
+          <h4>כל הפרומפטים</h4>
+          <ul className="list-group mb-3">
+            {prompts.map((p: any, i: number) => (
+              <li key={i} className="list-group-item">
+                <strong>{p.user_id?.name}</strong>: {p.prompt} <span className="text-success">- {p.response}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div style={{ marginBottom: 30 }}>
-          <h3>הוספת תת-תחום חדש</h3>
-          <form onSubmit={handleAddSubCategory}>
-            <input
-              type="text"
-              placeholder="שם תת-תחום"
-              value={subCategoryName}
-              onChange={e => setSubCategoryName(e.target.value)}
-            />
-            <select
-              value={selectedCategory}
-              onChange={e => setSelectedCategory(e.target.value)}
-              style={{ marginLeft: "10px" }}
-            >
-              <option value="">בחר תחום</option>
-              {categories.map((cat: any) => (
-                <option key={cat._id} value={cat._id}>{cat.name}</option>
-              ))}
-            </select>
-            <button type="submit" style={{ marginLeft: "10px" }}>הוסף תת-תחום</button>
-          </form>
-        </div>
-        {message && <p style={{ color: "green" }}>{message}</p>}
-        <h3>היסטוריית משתמשים</h3>
-        <ul>
-          {users.map((u: any) => <li key={u._id}>{u.name} ({u.phone})</li>)}
-        </ul>
-        <h3>כל הפרומפטים</h3>
-        <ul>
-          {prompts.map((p: any, i: number) => (
-            <li key={i}>{p.user_id?.name}: {p.prompt} - {p.response}</li>
-          ))}
-        </ul>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -16,18 +16,23 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2>כניסה למנהל</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="password"
-          placeholder="הכנס סיסמה"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button type="submit" style={{ marginLeft: "10px" }}>כניסה</button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+      <div className="card p-4 shadow" style={{ maxWidth: 400, width: "100%" }}>
+        <h2 className="mb-3 text-center">כניסה למנהל</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="הכנס סיסמה"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">כניסה</button>
+        </form>
+        {error && <p className="text-danger mt-3 text-center">{error}</p>}
+      </div>
     </div>
   );
 };
