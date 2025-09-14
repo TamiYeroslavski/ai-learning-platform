@@ -1,41 +1,78 @@
-# AI-Driven Learning Platform (Mini MVP)
 
-## Overview
-A mini learning platform enabling users to select topics, send prompts to AI (OpenAI GPT), receive generated lessons, and view their learning history. Includes REST API backend, MongoDB database, OpenAI integration, and a React dashboard.
-
-## Technologies Used
-- Backend: Node.js (Express, TypeScript)
-- Database: MongoDB (via Mongoose)
-- Frontend: React (TypeScript)
-- AI: OpenAI GPT API
-- Auth: JWT (bonus)
-- Docker Compose (for MongoDB)
+# AI Learning Platform
 
 ## Setup Instructions
-See below for running locally and configuring environment variables.
 
-## Project Structure
-- `/backend` - Node.js API server
-- `/frontend` - React web dashboard
-- `/docker` - Docker Compose files
+1. Clone the repository:
+	```bash
+	git clone https://github.com/TamiYeroslavski/ai-learning-platform.git
+	```
+2. Install dependencies for backend:
+	```bash
+	cd backend
+	npm install
+	```
+3. Install dependencies for frontend:
+	```bash
+	cd ../frontend
+	npm install
+	```
+4. Create a `.env` file in the backend folder (see example below).
+5. Start backend server:
+	```bash
+	npm run dev
+	```
+6. Start frontend server:
+	```bash
+	npm start
+	```
+
+## Technologies Used
+- Node.js
+- Express.js
+- MongoDB (via Mongoose)
+- React (TypeScript)
+- Bootstrap
+- Docker (optional)
+- OpenAI API
+
+## Assumptions Made
+- Only the admin (password: `admin`) can add categories and subcategories or view user history.
+- Users register with name and phone only.
+- The backend runs on port 5001 by default, frontend on port 3000.
+- MongoDB is running locally or via Docker.
+- OpenAI API key is required for prompt responses.
 
 ## How to Run Locally
-1. Clone the repo
-2. See `/backend/README.md` and `/frontend/README.md` for setup
-3. Use Docker Compose to start MongoDB
 
-## Sample .env
-See `.env.example` in `/backend` for required variables.
+### Backend
+1. Go to the `backend` folder.
+2. Create a `.env` file (see example below).
+3. Run:
+	```bash
+	npm run dev
+	```
 
-## Assumptions
-- Only basic validation and error handling
-- No email verification
-- Admin dashboard is accessible via a simple route
+### Frontend
+1. Go to the `frontend` folder.
+2. Run:
+	```bash
+	npm start
+	```
 
-## Usage
-- Register, select category/sub-category, submit prompt, view AI lesson and history
-- Admin: view all users and their prompt history
+### Docker (optional)
+1. Go to the `docker` folder.
+2. Run:
+	```bash
+	docker-compose up
+	```
+
+## Sample .env Example File (backend/.env)
+```env
+MONGO_URI=mongodb://localhost:27017/ai-learning-platform
+OPENAI_API_KEY=your_openai_api_key_here
+PORT=5001
+```
 
 ---
-
-For full details, see documentation in each folder.
+Feel free to contact for any questions or improvements!
