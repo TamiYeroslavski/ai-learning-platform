@@ -93,7 +93,7 @@ const Admin = () => {
           </ul>
           <h4>כל הפרומפטים</h4>
           <ul className="list-group mb-3">
-            {prompts.map((p: any, i: number) => (
+            {prompts.filter((p: any) => p.response !== 'AI response error').map((p: any, i: number) => (
               <li key={i} className="list-group-item">
                 <strong>{p.user_id?.name}</strong>: {p.prompt} <span className="text-success">- {p.response}</span>
               </li>
