@@ -94,35 +94,7 @@ function Dashboard() {
           <li key={i}>{h.prompt} - <span style={{ color: '#007700' }}>{h.response}</span></li>
         ))}
       </ul>
-      <hr />
-      <h4>הוסף תחום לימוד חדש</h4>
-      <form onSubmit={handleAddCategory} style={{ marginBottom: '1em', display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <input
-          type="text"
-          placeholder="שם תחום לימוד"
-          value={newCategory}
-          onChange={e => setNewCategory(e.target.value)}
-          required
-        />
-        <button type="submit">הוסף תחום</button>
-      </form>
-      {categoryError && <div style={{ color: 'red' }}>{categoryError}</div>}
-      <h4>הוסף תת-נושא חדש</h4>
-      <form onSubmit={handleAddSubCategory} style={{ marginBottom: '1em', display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <select value={subCategoryCategoryId} onChange={e => setSubCategoryCategoryId(e.target.value)} required>
-          <option value="">בחר תחום לימוד</option>
-          {categories.map((c: any) => <option key={c._id} value={c._id}>{c.name}</option>)}
-        </select>
-        <input
-          type="text"
-          placeholder="שם תת-נושא"
-          value={newSubCategory}
-          onChange={e => setNewSubCategory(e.target.value)}
-          required
-        />
-        <button type="submit">הוסף תת-נושא</button>
-      </form>
-      {subCategoryError && <div style={{ color: 'red' }}>{subCategoryError}</div>}
+      {/* אופציה להוספת תחום ותת-תחום זמינה רק למנהל */}
     </div>
   );
 }
